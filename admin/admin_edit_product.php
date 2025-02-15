@@ -23,41 +23,62 @@ if ($result->num_rows !== 1) {
 }
 $product = $result->fetch_assoc();
 
-// Handle form submission
+// Handle form submission for updating product
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $conn->real_escape_string($_POST['name']);
-    $description = $conn->real_escape_string($_POST['description']);
-    $price = floatval($_POST['price']);
-    $stock = intval($_POST['stock']);
-    $category_id = isset($_POST['category_id']) && $_POST['category_id'] != '' ? intval($_POST['category_id']) : 'NULL';
-
-    // Handle new image upload if provided
-    $image = $product['image'];
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = "../images/";
-        $filename = basename($_FILES['image']['name']);
-        $targetFile = $uploadDir . $filename;
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            $image = $filename;
-        } else {
-            $errors[] = "Failed to upload new image.";
+    if (isset($_POST['delete'])) {
+        // Delete the product
+        $deleteQuery = "DELETE FROM products WHERE id='$product_id'";
+        
+        // Optionally, delete the image file from the server if you want to remove it too
+        if (!empty($product['image'])) {
+            $imagePath = "../images/" . $product['image'];
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
-    }
-    
-    if(empty($errors)){
-        $updateQuery = "UPDATE products SET 
-                        category_id=$category_id, 
-                        name='$name', 
-                        description='$description', 
-                        price='$price', 
-                        stock='$stock',
-                        image='$image' 
-                        WHERE id='$product_id'";
-        if ($conn->query($updateQuery) === TRUE) {
-            header("Location: admin_dashboard.php");
+
+        if ($conn->query($deleteQuery) === TRUE) {
+            header("Location: admin_dashboard.php"); // Redirect to dashboard after deletion
             exit();
         } else {
-            $errors[] = "Error: " . $conn->error;
+            $errors[] = "Error deleting product: " . $conn->error;
+        }
+    } else {
+        // Handle update product logic here (as your original code)
+        $name = $conn->real_escape_string($_POST['name']);
+        $description = $conn->real_escape_string($_POST['description']);
+        $price = floatval($_POST['price']);
+        $stock = intval($_POST['stock']);
+        $category_id = isset($_POST['category_id']) && $_POST['category_id'] != '' ? intval($_POST['category_id']) : 'NULL';
+
+        // Handle new image upload if provided
+        $image = $product['image'];
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = "../images/";
+            $filename = basename($_FILES['image']['name']);
+            $targetFile = $uploadDir . $filename;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $image = $filename;
+            } else {
+                $errors[] = "Failed to upload new image.";
+            }
+        }
+
+        if (empty($errors)) {
+            $updateQuery = "UPDATE products SET 
+                            category_id=$category_id, 
+                            name='$name', 
+                            description='$description', 
+                            price='$price', 
+                            stock='$stock',
+                            image='$image' 
+                            WHERE id='$product_id'";
+            if ($conn->query($updateQuery) === TRUE) {
+                header("Location: admin_dashboard.php");
+                exit();
+            } else {
+                $errors[] = "Error: " . $conn->error;
+            }
         }
     }
 }
@@ -74,36 +95,51 @@ $catResult = $conn->query("SELECT * FROM categories");
 <body>
     <h2>Edit Product</h2>
     <?php
-    if(!empty($errors)){
-        foreach($errors as $error){
+    if (!empty($errors)) {
+        foreach ($errors as $error) {
             echo "<p class='error'>$error</p>";
         }
     }
     ?>
+    
+    <!-- Form to update product -->
     <form method="POST" action="admin_edit_product.php?id=<?php echo $product_id; ?>" enctype="multipart/form-data">
-        <label>Category:</label><br>
+        <label>Category:</label>
         <select name="category_id">
             <option value="">-- Select Category --</option>
-            <?php while($cat = $catResult->fetch_assoc()){ ?>
+            <?php while($cat = $catResult->fetch_assoc()) { ?>
                 <option value="<?php echo $cat['id']; ?>" <?php if($cat['id'] == $product['category_id']) echo 'selected'; ?>>
                     <?php echo htmlspecialchars($cat['name']); ?>
                 </option>
             <?php } ?>
         </select><br>
-        <label>Product Name:</label><br>
-        <input type="text" name="name" value="<?php echo htmlspecialchars($product['name']); ?>" required><br>
-        <label>Description:</label><br>
-        <textarea name="description" required><?php echo htmlspecialchars($product['description']); ?></textarea><br>
-        <label>Price:</label><br>
-        <input type="number" name="price" step="0.01" value="<?php echo $product['price']; ?>" required><br>
-        <label>Stock:</label><br>
-        <input type="number" name="stock" step="0.01" value="<?php echo $product['stock']; ?>" required><br>
-        <label>Current Image:</label><br>
-        <img src="../images/<?php echo htmlspecialchars($product['image']); ?>" width="80" height="80"><br>
-        <label>Change Image (optional):</label><br>
-        <input type="file" name="image"><br><br>
+
+        <label>Product Name:</label>
+        <textarea name="name" required rows="2" cols="20"><?php echo htmlspecialchars($product['name']); ?></textarea>
+        
+        <label>Description:</label>
+        <textarea name="description" required rows="5" cols="20"><?php echo htmlspecialchars($product['description']); ?></textarea>
+        
+        <label>Price:</label>
+        <input type="number" name="price" step="0.01" value="<?php echo $product['price']; ?>" required>
+        
+        <label>Stock:</label>
+        <input type="number" name="stock" step="0.01" value="<?php echo $product['stock']; ?>" required>
+        
+        <label>Current Image:</label>
+        <img src="../images/<?php echo htmlspecialchars($product['image']); ?>" width="80" height="80">
+        
+        <label>Change Image (optional):</label>
+        <input type="file" name="image">
+        
         <button type="submit">Update Product</button>
     </form>
-    <a href="admin_dashboard.php">Back to Dashboard</a>
+    
+    <!-- Delete Product Form -->
+    <form method="POST" action="admin_edit_product.php?id=<?php echo $product_id; ?>" onsubmit="return confirm('Are you sure you want to delete this product?');">
+        <button type="submit" name="delete">Delete Product</button>
+    </form>
+
+    <a href="admin_dashboard.php" >Back to Dashboard</a>
 </body>
 </html>
