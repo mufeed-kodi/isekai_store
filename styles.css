@@ -1,0 +1,47 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #333;
+    color: #fff;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.navbar a {
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    float: left;
+}
+
+.navbar .nav-right {
+    float: right;
+}
+
+.error {
+    color: red;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    width: 250px;
+    text-align: center;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
