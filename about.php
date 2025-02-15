@@ -45,14 +45,14 @@ session_start();
 
 
     <!-- Emails Section -->
-    class="contact-section" id="emails">
+    <class="contact-section" id="emails">
         <h2>Contact Us via Email</h2>
         <ul>
-            <li>Ahmed Hassan - <a href="mailto:ahmedhassan@example.com">ahmedhassan@example.com</a></li>
-            <li>Mufeed Mamadan - <a href="mailto:mufeed@example.com">mufeed@example.com</a></li>
-            <li>Mohamed Jamal - <a href="mailto:jamal@example.com">jamal@example.com</a></li>
-            <li>Montaser Mohamed - <a href="mailto:montaser@example.com">montaser@example.com</a></li>
-            <li>Ahmed Mahmoud - <a href="mailto:ahmedmahmoud@example.com">ahmedmahmoud@example.com</a></li>
+        <li>Ahmed Hassan - <a href="mailto:7moody63600@gmail.com">7moody63600@gmail.com</a></li>
+        <li>Mufeed Mamadan - <a href="mailto:mufeed.kodika@gmail.com">mufeed.kodika@gmail.com</a></li>
+        <li>Mohamed Jamal - <a href="mailto:mohamedjammal1919@mail.com">mohamedjammal1919@gmail.com</a></li>
+        <li>Montaser Mohamed - <a href="mailto:Montaser123411@gmail.com">Montaser123411@gmail.com</a></li>
+        <li>Ahmed Mahmoud - <a href="mailto:Akinoyuri100@gmail.com">Akinoyuri100@gmail.com</a></li>
         </ul>
     
 
@@ -60,11 +60,11 @@ session_start();
     
         <h2>Our Contact Numbers</h2>
         <ul>
-            <li>Ahmed Hassan - +1 234 567 890</li>
-            <li>Mufeed Mamadan - +1 345 678 901</li>
-            <li>Mohamed Jamal - +1 456 789 012</li>
-            <li>Montaser Mohamed - +1 567 890 123</li>
-            <li>Ahmed Mahmoud - +1 678 901 234</li>
+            <li>Ahmed Hassan     -  +201558665092</li>
+            <li>Mufeed Mamadan   -  +256744370328</li>
+            <li>Mohamed Jamal    -  +249998130196</li>
+            <li>Montaser Mohamed -  +249900213599</li>
+            <li>Ahmed Mahmoud    -  +249129649085</li>
         </ul>
     </section>
 
