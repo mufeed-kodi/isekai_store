@@ -64,6 +64,7 @@ $total = 0;
         <!-- Only show checkout button if cart is not empty -->
         <?php if ($total > 0) { ?>
             <a href="checkout.php"><button>Proceed to Checkout</button></a>
+            <a href="index.php"><button>Want to add more?</button></a>
         <?php } ?>
     <?php } else { ?>
         <p>Your cart is empty.</p>
