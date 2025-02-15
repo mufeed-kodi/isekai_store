@@ -31,7 +31,7 @@ $result = $conn->query($query);
                 <form method="POST" action="add_to_cart.php">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <!-- Quantity selector -->
-                    <label for="quantity_<?php echo $product['id']; ?>">Qty:</label>
+                    <label for="quantity_<?php echo $product['id']; ?>">Quantity:</label>
                     <input type="number" name="quantity" id="quantity_<?php echo $product['id']; ?>" value="1" min="1"> <br>
                    
                     <button type="submit">Add to Cart</button>
