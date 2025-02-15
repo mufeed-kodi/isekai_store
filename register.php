@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Escape inputs to avoid SQL injection (for production, use prepared statements)
     $fullname = $conn->real_escape_string($_POST['fullname']);
     $username_input = $conn->real_escape_string($_POST['username']);
+    $phone_number = $conn->real_escape_string($_POST['phone_number']);
+    $address = $conn->real_escape_string($_POST['address']);
     $email = $conn->real_escape_string($_POST['email']);
     $password_input = $_POST['password'];
 
@@ -18,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Hash the password using a secure algorithm
         $hashedPassword = password_hash($password_input, PASSWORD_DEFAULT);
-        $insertQuery = "INSERT INTO users (fullname, username, email, password) 
-                        VALUES ('$fullname', '$username_input', '$email', '$hashedPassword')";
+        $insertQuery = "INSERT INTO users (fullname, username, phone_number, address, email, password) 
+                        VALUES ('$fullname', '$username_input', '$phone_number', '$address', '$email', '$hashedPassword')";
         if ($conn->query($insertQuery) === TRUE) {
             header("Location: login.php");
             exit();
@@ -50,6 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" name="fullname" required><br>
         <label>Username:</label><br>
         <input type="text" name="username" required><br>
+        <label>Phone number:</label><br>
+        <input type="text" name="phone_number" required><br>
+        <label>Address:</label><br>
+        <input type="text" name="address" required><br>
         <label>Email:</label><br>
         <input type="email" name="email" required><br>
         <label>Password:</label><br>
