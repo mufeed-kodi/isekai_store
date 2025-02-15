@@ -13,6 +13,10 @@ $catResult = $conn->query($catQuery);
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+<header>
+        <h1> Welcome to isekai store</h1>
+        <img src="designer.png" alt="Isekai Store Logo" class="logo" />
+    </header>
     <?php include 'navbar.php'; ?>
     <h2>Product Categories</h2>
     <div class="categories">
