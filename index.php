@@ -12,7 +12,11 @@ $result = $conn->query($query);
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+     <header>
+        <h1> Welcome to isekai store</h1>
+        <img src="designer.png" alt="Isekai Store Logo" class="logo" />
+    </header>
+    <?php include 'navbar.php';?>
     <h2>Latest Products</h2>
     <div class="product-list">
         <?php while($product = $result->fetch_assoc()) { ?>
@@ -28,7 +32,8 @@ $result = $conn->query($query);
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <!-- Quantity selector -->
                     <label for="quantity_<?php echo $product['id']; ?>">Qty:</label>
-                    <input type="number" name="quantity" id="quantity_<?php echo $product['id']; ?>" value="1" min="1">
+                    <input type="number" name="quantity" id="quantity_<?php echo $product['id']; ?>" value="1" min="1"> <br>
+                   
                     <button type="submit">Add to Cart</button>
                 </form>
             </div>
