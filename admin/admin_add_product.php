@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $conn->real_escape_string($_POST['name']);
     $description = $conn->real_escape_string($_POST['description']);
     $price = floatval($_POST['price']);
+    $stock = intval($_POST['stock']);
     $category_id = isset($_POST['category_id']) && $_POST['category_id'] != '' ? intval($_POST['category_id']) : 'NULL';
 
     // Handle file upload if an image is selected
@@ -21,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uploadDir = "../images/";
         $filename = basename($_FILES['image']['name']);
         $targetFile = $uploadDir . $filename;
-        // For simplicity, we are not doing extensive validation here.
         if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
             $image = $filename;
         } else {
@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     if(empty($errors)){
-        $insertQuery = "INSERT INTO products (category_id, name, description, price, image) 
-                        VALUES ($category_id, '$name', '$description', '$price', '$image')";
+        $insertQuery = "INSERT INTO products (category_id, name, description, price, stock, image) 
+                        VALUES ($category_id, '$name', '$description', '$price', '$stock', '$image')";
         if ($conn->query($insertQuery) === TRUE) {
             header("Location: admin_dashboard.php");
             exit();
@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch categories for selection
 $catResult = $conn->query("SELECT * FROM categories");
 ?>
 <!DOCTYPE html>
@@ -73,6 +72,8 @@ $catResult = $conn->query("SELECT * FROM categories");
         <textarea name="description" required></textarea><br>
         <label>Price:</label><br>
         <input type="number" name="price" step="0.01" required><br>
+        <label>Stock:</label><br>
+        <input type="number" name="stock" value="0" required><br>
         <label>Image:</label><br>
         <input type="file" name="image"><br><br>
         <button type="submit">Add Product</button>
