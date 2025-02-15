@@ -26,6 +26,9 @@ $result = $conn->query($query);
                 <p>Stock: <?php echo $product['stock']; ?></p>
                 <form method="POST" action="add_to_cart.php">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                        <!-- Quantity selector -->
+                    <label for="quantity_<?php echo $product['id']; ?>">Qty:</label>
+                    <input type="number" name="quantity" id="quantity_<?php echo $product['id']; ?>" value="1" min="1">
                     <button type="submit">Add to Cart</button>
                 </form>
             </div>
