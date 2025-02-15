@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $conn->real_escape_string($_POST['name']);
     $description = $conn->real_escape_string($_POST['description']);
     $price = floatval($_POST['price']);
+    $stock = intval($_POST['stock']);
     $category_id = isset($_POST['category_id']) && $_POST['category_id'] != '' ? intval($_POST['category_id']) : 'NULL';
 
     // Handle new image upload if provided
@@ -49,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         name='$name', 
                         description='$description', 
                         price='$price', 
+                        stock='$stock',
                         image='$image' 
                         WHERE id='$product_id'";
         if ($conn->query($updateQuery) === TRUE) {
@@ -94,6 +96,8 @@ $catResult = $conn->query("SELECT * FROM categories");
         <textarea name="description" required><?php echo htmlspecialchars($product['description']); ?></textarea><br>
         <label>Price:</label><br>
         <input type="number" name="price" step="0.01" value="<?php echo $product['price']; ?>" required><br>
+        <label>Stock:</label><br>
+        <input type="number" name="stock" step="0.01" value="<?php echo $product['stock']; ?>" required><br>
         <label>Current Image:</label><br>
         <img src="../images/<?php echo htmlspecialchars($product['image']); ?>" width="80" height="80"><br>
         <label>Change Image (optional):</label><br>
