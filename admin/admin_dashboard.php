@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_id'])) {
 include '../config.php';
 
 $admin_id = $_SESSION['admin_id'];
-// Get admin data (including last login)
+// Retrieve admin data including last login timestamp
 $adminQuery = "SELECT * FROM admins WHERE id='$admin_id'";
 $adminResult = $conn->query($adminQuery);
 $adminData = $adminResult->fetch_assoc();
@@ -29,7 +29,7 @@ while($order = $orderSummaryResult->fetch_assoc()){
     $ordersSummary[] = $order;
 }
 
-// Update admin last_login to the current timestamp for next time
+// Update admin last_login to current timestamp (for next login summary)
 $currentTimestamp = date('Y-m-d H:i:s');
 $updateQuery = "UPDATE admins SET last_login='$currentTimestamp' WHERE id='$admin_id'";
 $conn->query($updateQuery);
@@ -56,6 +56,8 @@ $conn->query($updateQuery);
                     <th>Buyer</th>
                     <th>Total</th>
                     <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 <?php foreach($ordersSummary as $order){ ?>
                     <tr>
@@ -63,6 +65,14 @@ $conn->query($updateQuery);
                         <td><?php echo htmlspecialchars($order['username']); ?></td>
                         <td>$<?php echo number_format($order['total'], 2); ?></td>
                         <td><?php echo $order['order_date']; ?></td>
+                        <td><?php echo $order['status']; ?></td>
+                        <td>
+                            <?php if($order['status'] != 'Pending') { ?>
+                                <a href="admin_delete_order.php?order_id=<?php echo $order['id']; ?>">Delete Order</a>
+                            <?php } else { ?>
+                                N/A
+                            <?php } ?>
+                        </td>
                     </tr>
                 <?php } ?>
             </table>
@@ -92,11 +102,11 @@ $conn->query($updateQuery);
             <th>Stock</th>
             <th>Actions</th>
         </tr>
-        <?php while($product = $inventoryResult->fetch_assoc()){ 
-            // Get category name (if available)
+        <?php while($product = $inventoryResult->fetch_assoc()){
+            // Retrieve the category name if available
             $catName = "Uncategorized";
             if($product['category_id']){
-                $catQuery = "SELECT name FROM categories WHERE id=".$product['category_id'];
+                $catQuery = "SELECT name FROM categories WHERE id=" . $product['category_id'];
                 $catRes = $conn->query($catQuery);
                 if($catRes->num_rows == 1){
                     $catRow = $catRes->fetch_assoc();
