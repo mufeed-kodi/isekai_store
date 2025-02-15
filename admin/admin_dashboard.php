@@ -15,7 +15,7 @@ $adminData = $adminResult->fetch_assoc();
 $lastLogin = $adminData['last_login'];
 
 // Query orders placed since last login
-$orderSummaryQuery = "SELECT orders.*, users.username 
+$orderSummaryQuery = "SELECT orders.*, users.username, users.phone_number, users.address 
                       FROM orders 
                       JOIN users ON orders.user_id = users.id 
                       WHERE orders.order_date > '$lastLogin'";
@@ -54,6 +54,8 @@ $conn->query($updateQuery);
                 <tr>
                     <th>Order ID</th>
                     <th>Buyer</th>
+                    <th>Phone number</th>
+                    <th>Address</th>
                     <th>Total</th>
                     <th>Date</th>
                     <th>Status</th>
@@ -63,6 +65,8 @@ $conn->query($updateQuery);
                     <tr>
                         <td><?php echo $order['id']; ?></td>
                         <td><?php echo htmlspecialchars($order['username']); ?></td>
+                        <td><?php echo htmlspecialchars($order['phone_number']); ?></td>
+                        <td><?php echo htmlspecialchars($order['address']); ?></td>
                         <td>$<?php echo number_format($order['total'], 2); ?></td>
                         <td><?php echo $order['order_date']; ?></td>
                         <td><?php echo $order['status']; ?></td>
