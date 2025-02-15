@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 15, 2025 at 01:24 AM
+-- Generation Time: Feb 15, 2025 at 02:14 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `created_at`, `last_login`) VALUES
-(2, 'fido', '$2y$10$421InEA/aq4FBi1Djj/tMOAEXpeaURclEu6wEjrpJsbtdPouhA.y2', '2025-02-04 21:49:13', '2025-02-15 01:22:31');
+(2, 'fido', '$2y$10$421InEA/aq4FBi1Djj/tMOAEXpeaURclEu6wEjrpJsbtdPouhA.y2', '2025-02-04 21:49:13', '2025-02-14 23:13:36');
 
 -- --------------------------------------------------------
 
@@ -75,7 +75,16 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `description` text,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `description`, `created_at`) VALUES
+(1, 'Electronics', 'Electronic devices and gadgets', '2025-02-15 02:10:49'),
+(2, 'Clothing', 'Apparel and accessories', '2025-02-15 02:10:49'),
+(3, 'Books', 'Fiction, non-fiction, and educational materials', '2025-02-15 02:10:49');
 
 -- --------------------------------------------------------
 
@@ -130,7 +139,14 @@ CREATE TABLE IF NOT EXISTS `products` (
   `stock` int DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `image`, `created_at`, `stock`) VALUES
+(1, 3, 'Python book', 'Programming Python: Powerful Object-Oriented Programming', 39.99, '71wvDBsPRSL.png', '2025-02-15 01:50:53', 10);
 
 -- --------------------------------------------------------
 
