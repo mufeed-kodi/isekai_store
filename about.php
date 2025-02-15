@@ -2,14 +2,76 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Isekai - About Us</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Isekai Store</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>
-    <h2>About Us</h2>
-    <p>Information about Isekai goes here.</p>
+
+    <header>
+        <h1>Welcome to Isekai Store</h1>
+        <img src="designer.png" alt="Isekai Store Logo" class="logo" />
+    </header>
+
+    <sect class="about-container">
+        <h2>Who Are We?</h2>
+        <p>
+            Ever wondered what an online store from another world would look like? Well, wonder no more!  
+            <strong>Isekai Store</strong> is your gateway to the most mystical, legendary, and otherworldly items  
+            you've never seen before. We are not just a store – we are an experience!
+        </p>
+
+        <h2>Meet the Team</h2>
+        <ul id="team-list">
+            <li><strong>Ahmed Hassan </strong></li>
+            <li><strong>Mufeed Mamadan </strong></li>
+            <li><strong>Mohamed Jamal</strong></li>
+            <li><strong>Montaser Mohamed</strong></li>
+            <li><strong>Ahmed Mahmoud</strong></li>
+        </ul>
+
+        <h2>Our Vision</h2>
+        <p>
+            Our goal is to bring fantasy and reality together. Whether you're looking for rare  
+            artifacts, enchanted gear, or just some cool stuff, we’ve got you covered.  
+            Join us on this adventure and step into another world!
+        </p>
+    
+
+
+
+    <!-- Emails Section -->
+    class="contact-section" id="emails">
+        <h2>Contact Us via Email</h2>
+        <ul>
+            <li>Ahmed Hassan - <a href="mailto:ahmedhassan@example.com">ahmedhassan@example.com</a></li>
+            <li>Mufeed Mamadan - <a href="mailto:mufeed@example.com">mufeed@example.com</a></li>
+            <li>Mohamed Jamal - <a href="mailto:jamal@example.com">jamal@example.com</a></li>
+            <li>Montaser Mohamed - <a href="mailto:montaser@example.com">montaser@example.com</a></li>
+            <li>Ahmed Mahmoud - <a href="mailto:ahmedmahmoud@example.com">ahmedmahmoud@example.com</a></li>
+        </ul>
+    
+
+    <!-- Phone Contacts Section -->
+    
+        <h2>Our Contact Numbers</h2>
+        <ul>
+            <li>Ahmed Hassan - +1 234 567 890</li>
+            <li>Mufeed Mamadan - +1 345 678 901</li>
+            <li>Mohamed Jamal - +1 456 789 012</li>
+            <li>Montaser Mohamed - +1 567 890 123</li>
+            <li>Ahmed Mahmoud - +1 678 901 234</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Isekai Store Online. All rights reserved.</p>
+    </footer>
+
+    <script src="about.js"></script>
 </body>
 </html>
