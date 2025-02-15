@@ -65,7 +65,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Clear the user's cart
         $conn->query("DELETE FROM cart WHERE user_id='$user_id'");
         $conn->commit();
-        echo "<p>Order placed successfully!</p>";
+        echo " <!DOCTYPE html>
+    <html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Order Success</title>
+        <link rel='stylesheet' type='text/css' href='styles.css'> <!-- Link to your CSS -->
+    </head>
+    <body>
+        <header>
+            <h1>Order Placed Successfully!</h1>
+        </header>
+
+        <div class='message-container'>
+            <p>Your order has been successfully placed.</p>
+            <p>Thank you for shopping with us!</p>
+        </div>
+
+        <footer>
+            <p>Redirecting you to the homepage...</p>
+        </footer>
+
+        <script>
+            setTimeout(function(){
+                window.location.href = 'index.php'; // Redirect to the homepage
+            }, 3000); // 3-second delay before redirect
+        </script>
+    </body>
+    </html>";
+        header("refresh:3;url=index.php");
     } catch(Exception $e) {
         $conn->rollback();
         echo "<p>Failed to place order: " . $e->getMessage() . "</p>";
