@@ -10,41 +10,59 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Calculate total
-$query = "SELECT cart.*, products.price 
+// Fetch cart items
+$query = "SELECT cart.*, products.price, products.stock 
           FROM cart 
           JOIN products ON cart.product_id = products.id 
           WHERE cart.user_id='$user_id'";
 $result = $conn->query($query);
+
+if ($result->num_rows == 0) {
+    echo "<p>Your cart is empty.</p>";
+    exit();
+}
+
 $total = 0;
 while($row = $result->fetch_assoc()){
     $total += $row['price'] * $row['quantity'];
 }
 
-// When form is submitted, process the order
+// Reset pointer for processing the order
+$result->data_seek(0);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->begin_transaction();
     try {
-        // Insert the new order
+        // Insert the new order only if total is greater than 0
+        if($total <= 0){
+            throw new Exception("Cart is empty.");
+        }
         $orderQuery = "INSERT INTO orders (user_id, total) VALUES ('$user_id', '$total')";
         if (!$conn->query($orderQuery)) {
             throw new Exception($conn->error);
         }
         $order_id = $conn->insert_id;
         
-        // Retrieve cart items again
-        $result = $conn->query($query);
+        // Process each cart item
         while($item = $result->fetch_assoc()){
             $price = $item['price'];
             $quantity = $item['quantity'];
             $product_id = $item['product_id'];
+            
+            // Insert order item
             $orderItemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) 
                                VALUES ('$order_id', '$product_id', '$quantity', '$price')";
             if (!$conn->query($orderItemQuery)) {
                 throw new Exception($conn->error);
             }
+            
+            // Update stock: subtract ordered quantity
+            $updateStockQuery = "UPDATE products SET stock = stock - $quantity WHERE id = $product_id";
+            if (!$conn->query($updateStockQuery)) {
+                throw new Exception($conn->error);
+            }
         }
-        // Clear the user's cart after ordering
+        // Clear the user's cart
         $conn->query("DELETE FROM cart WHERE user_id='$user_id'");
         $conn->commit();
         echo "<p>Order placed successfully!</p>";
@@ -52,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->rollback();
         echo "<p>Failed to place order: " . $e->getMessage() . "</p>";
     }
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -64,9 +83,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include 'navbar.php'; ?>
     <h2>Checkout</h2>
     <p>Total Amount: $<?php echo number_format($total,2); ?></p>
-    <!-- In a real system you would collect payment and shipping details -->
-    <form method="POST" action="checkout.php">
-        <button type="submit">Place Order</button>
-    </form>
+    <!-- Only display checkout form if cart is not empty -->
+    <?php if($total > 0){ ?>
+        <form method="POST" action="checkout.php">
+            <button type="submit">Place Order</button>
+        </form>
+    <?php } else { ?>
+        <p>Your cart is empty.</p>
+    <?php } ?>
 </body>
 </html>
