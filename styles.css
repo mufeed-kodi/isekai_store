@@ -310,3 +310,19 @@ p {
     font-weight: bold;
     color: #ffdb4d;
 }
+
+a.back-to-dashboard:hover {
+    background: linear-gradient(45deg, #ffdb4d, #f8c200);
+    transform: scale(1.05);}
+
+    a.back-to-dashboard {
+        padding: 10px 15px;
+        background: linear-gradient(45deg, #f8c200, #ffdb4d);
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none; /* Remove default underline */
+        display: inline-block;
+        transition: 0.3s;
+    }
