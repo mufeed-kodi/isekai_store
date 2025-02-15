@@ -59,23 +59,23 @@ $catResult = $conn->query("SELECT * FROM categories");
     }
     ?>
     <form method="POST" action="admin_add_product.php" enctype="multipart/form-data">
-        <label>Category:</label><br>
+        <label>Category:</label>
         <select name="category_id">
             <option value="">-- Select Category --</option>
             <?php while($cat = $catResult->fetch_assoc()){ ?>
                 <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
             <?php } ?>
-        </select><br>
-        <label>Product Name:</label><br>
-        <input type="text" name="name" required><br>
-        <label>Description:</label><br>
-        <textarea name="description" required></textarea><br>
-        <label>Price:</label><br>
-        <input type="number" name="price" step="0.01" required><br>
-        <label>Stock:</label><br>
-        <input type="number" name="stock" value="0" required><br>
-        <label>Image:</label><br>
-        <input type="file" name="image"><br><br>
+        </select>
+        <label>Product Name:</label>
+        <textarea name="name" required rows="2" cols="20"></textarea>
+        <label>Description:</label>
+        <textarea name="description" required rows="5" cols="20"></textarea>
+        <label>Price:</label>
+        <input type="number" name="price" step="0.01" required>
+        <label>Stock:</label>
+        <input type="number" name="stock" value="0" required>
+        <label>Image:</label>
+        <input type="file" name="image">
         <button type="submit">Add Product</button>
     </form>
     <a href="admin_dashboard.php">Back to Dashboard</a>
