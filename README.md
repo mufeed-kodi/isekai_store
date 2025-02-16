@@ -26,16 +26,13 @@ Isekai Store Online solves these problems by providing:
 - Browse products by category  
 - Add/remove items from the cart  
 - Checkout process  
-- User authentication (Register/Login/Logout)  
-- View order history  
-- Profile management  
-- Track delivery status  
+- User authentication (Register/Login/Logout)    
 
 ### Admin Side  
 - Secure admin login  
 - Manage products (add, edit, delete)  
 - Manage orders and update delivery status  
-- Assign and manage delivery agents  
+- Assign and manage delivery agents (via calls)
 - View sales analytics (future update)  
 
 ##  Technologies Used  
@@ -49,7 +46,7 @@ Isekai Store Online solves these problems by providing:
    ```bash
    git clone https://github.com/mufeed-kodi/isekai_store.git
    ```
-2. Set up WAMP/XAMPP and start MySQL & Apache.  
+2. Set up WAMP.  
 3. Import the database:  
    - Open phpMyAdmin
    - Create a database (e.g., `isekai_store`)  
