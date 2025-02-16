@@ -47,7 +47,7 @@ Isekai Store Online solves these problems by providing:
 ##  Setup Instructions  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-repo/isekai-store-online.git
+   git clone https://github.com/mufeed-kodi/isekai_store.git
    ```
 2. Set up WAMP/XAMPP and start MySQL & Apache.  
 3. Import the database:  
