@@ -33,7 +33,10 @@ Isekai Store Online solves these problems by providing:
 - Manage products (add, edit, delete)  
 - Manage orders and update delivery status  
 - Assign and manage delivery agents (via calls)
-- View sales analytics (future update)  
+- View sales analytics (future update)
+## Important Note: To access the admin side you must access it through this URL "http://isekai-store/isekai_store-main/admin/admin_login.php"
+## Admin Account:  username: "fido" - password: "alyosha"
+## To add a new admin you must open the register_admin.php in a text editor and edit the username and password then execute the code. ##
 
 ##  Technologies Used  
 - Frontend: HTML, CSS, JavaScript  
@@ -52,16 +55,14 @@ Isekai Store Online solves these problems by providing:
    - Create a database (e.g., `isekai_store`)  
    - Import `isekai_db2.sql`  
 4. Configure database connection in `config.php`. 
-5. Run the project on `localhost/isekai_store-dev/`. 
+5. Run the project on `localhost/isekai_store-main/`. 
 
-## Future Enhancements  
-Advanced AI-powered product recommendations based on browsing history.  
-Automated delivery agent assignment based on order locations.  
-Live chatbot support for instant customer inquiries.  
+## Future Enhancements    
 Custom order requests (allow users to request specific items).  
 Online payment integration with multiple gateways.  
+Having delivery agents assignment.
 Admin analytics dashboard for insights on sales, customers, and trends.  
- Customer reviews & ratings to improve product trust.  
+Customer reviews & ratings to improve product trust.  
 
 ## Contact  
 For contributions or inquiries, feel free to reach out!  
