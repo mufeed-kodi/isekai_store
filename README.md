@@ -1,9 +1,19 @@
 # Team Members:
-## Ahmed Hassan Mahmoud  - 202003058 (username: Nekura058)
-## Mufeed Mamadan Elya   - 202003014 (username: mufeed-kodi)
-## Ahmed Mahmoud Hamza   - 202003039 (username: ahmedmoh100)
-## Mohamed Jamal Ali     - 202020002 (username: Hilmy91)
-## Montaser Mohamed Adam - 202003022 (username: kafaniTDM)
+# Ahmed Hassan Mahmoud  - 202003058 (username: Nekura058)
+# Mufeed Mamadan Elya   - 202003014 (username: mufeed-kodi)
+# Ahmed Mahmoud Hamza   - 202003039 (username: ahmedmoh100)
+# Mohamed Jamal Ali     - 202020002 (username: Hilmy91)
+# Montaser Mohamed Adam - 202003022 (username: kafaniTDM)
+
+##  Setup Instructions  
+# 1. Download the ZIP file
+# 2. Set up WAMPSERVER. (The project is configured to only work through wampserver)
+# 3. Import the database:  
+## - Open phpMyAdmin
+## - Create a database name = `isekai_db2` 
+## - Import `isekai_db2.sql`  file
+4. Configure database connection in `config.php`. ( servername = "localhost",  username = "root",  password = "",  dbname = "isekai_db2")
+5. Run the project on `localhost/isekai_store-main/`. 
 
 # Isekai Store Online  
 
@@ -34,13 +44,15 @@ Isekai Store Online solves these problems by providing:
 - Add/remove items from the cart  
 - Checkout process  
 - User authentication (Register/Login/Logout)    
-
+## Customer Account:  username: "mufeed" - password: "fido"
+## YOU ARE FREE TO REGISTER NEW ACCOUNTS THROUGH THE REGISTER PAGE
 ### Admin Side  
 - Secure admin login  
 - Manage products (add, edit, delete)  
 - Manage orders and update delivery status  
 - Assign and manage delivery agents (via calls)
 - View sales analytics (future update)
+
 ## Important Note: To access the admin side you must access it through this URL "http://isekai-store/isekai_store-main/admin/admin_login.php"
 ## Admin Account:  username: "fido" - password: "alyosha"
 ## To add a new admin you must open the register_admin.php in a text editor and edit the username and password then execute the code. ##
@@ -50,19 +62,6 @@ Isekai Store Online solves these problems by providing:
 - Backend: PHP  
 - Database: MySQL  
 - Server: WAMP  
-
-##  Setup Instructions  
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/mufeed-kodi/isekai_store.git
-   ```
-2. Set up WAMP.  
-3. Import the database:  
-   - Open phpMyAdmin
-   - Create a database (e.g., `isekai_store`)  
-   - Import `isekai_db2.sql`  
-4. Configure database connection in `config.php`. 
-5. Run the project on `localhost/isekai_store-main/`. 
 
 ## Future Enhancements    
 Custom order requests (allow users to request specific items).  
