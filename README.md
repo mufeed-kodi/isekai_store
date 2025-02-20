@@ -1,9 +1,9 @@
 # Team Members:
-# Ahmed Hassan Mahmoud  - 202003058 (username: Nekura058)
-# Mufeed Mamadan Elya   - 202003014 (username: mufeed-kodi)
-# Ahmed Mahmoud Hamza   - 202003039 (username: ahmedmoh100)
-# Mohamed Jamal Ali     - 202020002 (username: Hilmy91)
-# Montaser Mohamed Adam - 202003022 (username: kafaniTDM)
+# Ahmed Hassan Mahmoud  - IT - 202003058 (username: Nekura058)
+# Mufeed Mamadan Elya   - IT - 202003014 (username: mufeed-kodi)
+# Ahmed Mahmoud Hamza   - IT - 202003039 (username: ahmedmoh100)
+# Mohamed Jamal Ali     - KM - 202020002 (username: Hilmy91)
+# Montaser Mohamed Adam - IT - 202003022 (username: kafaniTDM)
 
 ##  Setup Instructions  
 # 1. Download the ZIP file
