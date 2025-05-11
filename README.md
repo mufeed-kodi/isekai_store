@@ -1,19 +1,19 @@
 # Team Members:
-# Ahmed Hassan Mahmoud  - IT - 202003058 (username: Nekura058)
-# Mufeed Mamadan Elya   - IT - 202003014 (username: mufeed-kodi)
-# Ahmed Mahmoud Hamza   - IT - 202003039 (username: ahmedmoh100)
-# Mohamed Jamal Ali     - KM - 202020002 (username: Hilmy91)
-# Montaser Mohamed Adam - IT - 202003022 (username: kafaniTDM)
+ Ahmed Hassan Mahmoud  - IT - 202003058 (username: Nekura058)
+ Mufeed Mamadan Elya   - IT - 202003014 (username: mufeed-kodi)
+ Ahmed Mahmoud Hamza   - IT - 202003039 (username: ahmedmoh100)
+ Mohamed Jamal Ali     - KM - 202020002 (username: Hilmy91)
+ Montaser Mohamed Adam - IT - 202003022 (username: kafaniTDM)
 
 ##  Setup Instructions  
-# 1. Download the ZIP file
-# 2. Set up WAMPSERVER. (The project is configured to only work through wampserver)
-# 3. Import the database:  
-# - Open phpMyAdmin
-# - Create a database name = `isekai_db2` 
-# - Import `isekai_db2.sql`  file
-# 4. Configure database connection in `config.php`. ( servername = "localhost",  username = "root",  password = "",  dbname = "isekai_db2")
-# 5. Run the project on `localhost/isekai_store-main/`. 
+ 1. Download the ZIP file
+ 2. Set up WAMPSERVER. (The project is configured to only work through wampserver)
+ 3. Import the database:  
+  - Open phpMyAdmin
+  - Create a database name = `isekai_db2` 
+  - Import `isekai_db2.sql`  file
+ 4. Configure database connection in `config.php`. ( servername = "localhost",  username = "root",  password = "",  dbname = "isekai_db2")
+ 5. Run the project on `localhost/isekai_store-main/`. 
 
 # Isekai Store Online  
 
